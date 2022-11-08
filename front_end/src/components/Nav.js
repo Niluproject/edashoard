@@ -1,4 +1,5 @@
 import React from 'react';
+import test from '../components/ecommm.png'
 import {
     Link, useNavigate
 } from 'react-router-dom';
@@ -13,8 +14,8 @@ const Nav = () => {
         <div>
             <img
             alt='logo'
-            className='logo'
-             src='https://yt3.ggpht.com/ytc/AKedOLR09bCpy_XTq2scU91URc0pWG0EqS_Yc_Zg-r9pBQ=s900-c-k-c0x00ffffff-no-rj' />
+            src={test}
+            className='logo' />
             {
                 auth ?
 

@@ -28,7 +28,7 @@ const Login = () => {
             localStorage.setItem('token', JSON.stringify(result.auth));
             navigate("/")
         } else {
-            alert("Please enter connect details")
+            alert("Please enter correct details")
         }
     }
 
