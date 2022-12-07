@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 const ProductList = () => {
     const [products, setProducts] = useState([]);
+    const auth = JSON.parse(localStorage.getItem('user'));
+    console.log(auth);
 
     useEffect(() => {
         getProducts();
@@ -42,6 +44,23 @@ const ProductList = () => {
         
     }
 
+    const addtocarthandler =  (product_id) => {
+        const user_id = auth._id;
+        console.log(user_id);
+        fetch('http://localhost:5000/cart',{
+            method: "post",
+            headers:{
+                "Content-type": "application/json",
+                authorization:JSON.parse(localStorage.getItem('token'))
+            },
+            body: JSON.stringify({ product_id, user_id }),
+
+        }).then((response) => {
+            console.log(response);
+        });
+
+    }
+
     return (
         <div className="product-list">
             <h3>Product List</h3>
@@ -63,9 +82,10 @@ const ProductList = () => {
                         <li>{item.name}</li>
                         <li>{item.price}</li>
                         <li>{item.category}</li>
-                        <li>
-                            <button onClick={() => deleteProduct(item._id)}>Delete</button>
-                            <Link to={"/update/"+item._id} >Update </Link>
+                            <li>
+                            <button onClick={() => deleteProduct(item._id)} style={{background: "#87cce9"}}>Delete</button>
+                            <button style={{background: "#87cce9"}}><Link to={"/update/"+item._id} >Update </Link></button>
+                            <button style={{background: "#87cce9"}} onClick={() => addtocarthandler(item._id)}>C</button>
                             </li>
 
                     </ul>
