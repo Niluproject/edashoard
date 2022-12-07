@@ -1,5 +1,6 @@
 import React from 'react';
 import test from '../components/ecommm.png'
+import testt from '../components/images/cov.png'
 import {
     Link, useNavigate
 } from 'react-router-dom';
@@ -14,7 +15,7 @@ const Nav = () => {
         <div>
             <img
             alt='logo'
-            src={test}
+            src={testt}
             className='logo' />
             {
                 auth ?
@@ -23,7 +24,7 @@ const Nav = () => {
                         <li><Link to="/">Products</Link></li>
                         <li><Link to="/add">Add Products</Link></li>
                         <li><Link to="/update"> Update Products</Link></li>
-                        <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/cart">Cart</Link></li>
                         <li> <Link onClick={logout} to="/signup">Logout ({ JSON.parse(auth).name})</Link></li>
                     </ul>
                     :

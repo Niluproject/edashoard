@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("./db/config");
 const User = require('./db/User');
-const Product = require("./db/Product")
+const Product = require("./db/Product");
+const Cart = require("./db/cart")
 const Jwt = require('jsonwebtoken');
 const jwtKey = 'e-com';
 const app = express();
@@ -86,6 +87,13 @@ app.put("/product/:id", async (req, resp) => {
     resp.send(result)
 });
 
+app.post("/cart", async (req, resp) => {
+    console.log(req.body)
+    let cart = new Cart(req.body);
+    let result = await cart.save();
+     resp.send(result);
+});
+
 app.get("/search/:key", async (req, resp) => {
     let result = await Product.find({
         "$or": [
@@ -101,6 +109,19 @@ app.get("/search/:key", async (req, resp) => {
         ]
     });
     resp.send(result);
+})
+
+
+app.post("/cartlist", async (req, resp) => {
+    console.log(req.body.user_id);
+    let result = await Cart.find({user_id: req.body.user_id}).populate('product_id');
+    let list = result.map((item)=>item.product_id)
+      console.log(list);
+    if (result) {
+        resp.send(list)
+    } else {
+        resp.send({ "result": "No Record Found." })
+    }
 })
 
 app.listen(5000);

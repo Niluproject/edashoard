@@ -36,7 +36,6 @@ const UpdateProduct = () => {
         if (result) {
             navigate('/')
         }
-
     }
 
     return (
