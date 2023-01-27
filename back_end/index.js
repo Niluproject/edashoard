@@ -94,7 +94,7 @@ app.post("/cart", async (req, resp) => {
      resp.send(result);
 });
 
-app.get("/search/:key", async (req, resp) => {
+app.get("/search/:key", verifyToken,  async (req, resp) => {
     let result = await Product.find({
         "$or": [
             {
@@ -111,6 +111,24 @@ app.get("/search/:key", async (req, resp) => {
     resp.send(result);
 })
 
+function verifyToken(req, res, next){
+    const token = req.headers['authorization'];
+//     if(token){
+// token = token.split(' ');
+//     }else{
+
+//     }
+    // Jwt.verify(token, jwtKey, (err, valid)=>{
+    //     if(err){
+
+    //     }else{
+    //         res.send({result: "please add token with header"});
+    //     }
+    // })
+    console.warn("Middleware called", token);
+    next();
+}
+
 
 app.post("/cartlist", async (req, resp) => {
     console.log(req.body.user_id);
@@ -122,6 +140,13 @@ app.post("/cartlist", async (req, resp) => {
     } else {
         resp.send({ "result": "No Record Found." })
     }
-})
+});
+
+app.delete("/cartlist/:id", async (req, resp) => {
+    console.log('req.params.id',req.params.id);
+    let result = await Cart.deleteOne({ 
+        product_id: req.params.id });
+    resp.send(result)
+}),
 
 app.listen(5000);

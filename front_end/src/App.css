@@ -2,7 +2,7 @@
 .nav-ul {
   padding: 5px;
   margin: 0px;
-  background-color: skyblue;
+  background-color: #062168;
 }
 .nav-ul li{
   display:  inline-block;
@@ -16,7 +16,7 @@
 .footer {
   position: absolute;
   bottom: 0;
-  background-color: skyblue;
+  background-color: #062168;
   width: 100%;
   text-align: center;
 }
@@ -59,7 +59,7 @@
 .inputBox {
   padding: 7px;
   display: block;
-  border: 1px solid skyblue;
+  border: 1px solid #062168;
   width: 300px;
   margin: 20px;
 }
@@ -67,8 +67,10 @@
 .appButton {
   margin: 20px;
   width: 150px;
+  color: aliceblue;
+  border-radius: 8px;
   padding: 10px;
-  background-color: skyblue;
+  background-color: #5d6191;
   border: solid 1px;
   cursor: pointer;
 }
@@ -76,9 +78,8 @@
   text-align: right;
 }
 .logo {
-  width: 45px;
+  width: 130px;
   height: 45px;
-  border-radius: 50%;
   float: left;
   margin-top: 3px;
   margin-left: 10px;
@@ -99,7 +100,7 @@
 .product-list ul li {
   display: inline-block;
   width: 150px;
-  border: 1px solid skyblue;
+  border: 1px solid #062168;
   padding: 5px;
 }
 
@@ -116,7 +117,7 @@ color: #fff;
   margin: 20px;
   height: 38px;
   padding-left: 30px;
-  border: solid 1px skyblue;
+  border: solid 1px #062168;
 }
 
 @keyframes App-logo-spin {
@@ -127,3 +128,81 @@ color: #fff;
     transform: rotate(360deg);
   }
 }
+
+/*for start using login register app*/ 
+
+.login {
+  width: 400px;
+  background: #141a65;
+  color: aliceblue;
+  border: 1px solid #dddfe2;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  border-radius: 8px;
+  padding: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.login > input {
+  border-radius: 8px;
+  border: 2px solid #dddfe2;
+  outline: none;
+  color: #1d2129;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
+  width: 92%;
+  font-size: 1rem;
+}
+
+.login > .button {
+  background: #1877f2;
+  border: 1px solid #1877f2;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+/*for end using login register app*/
+
+/*for start using login register app*/ 
+
+.register {
+  width: 400px;
+  background: #141a65;
+  color: aliceblue;
+  border: 1px solid #dddfe2;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  border-radius: 8px;
+  padding: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.register > input {
+  border-radius: 8px;
+  border: 2px solid #dddfe2;
+  outline: none;
+  color: #1d2129;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
+  width: 92%;
+  font-size: 1rem;
+}
+
+.register > .button {
+  background: #1877f2;
+  border: 1px solid #1877f2;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+/*for start using login register app*/ 

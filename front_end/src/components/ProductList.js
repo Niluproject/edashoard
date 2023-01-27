@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { faPenSquare, faTrash, faShoppingCart, faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ProductList = () => {
     const [products, setProducts] = useState([]);
-    const auth = JSON.parse(localStorage.getItem('user'));
+    // try {
+
+    console.log(localStorage.getItem('user'));
+        const auth = JSON.parse(localStorage.getItem('user'));
+    // } catch (error) {
+    //    console.log(error); 
+    // }
+    
     console.log(auth);
 
     useEffect(() => {
@@ -22,7 +31,10 @@ const ProductList = () => {
     const deleteProduct = async (id) => {
         console.warn(id)
         let result = await fetch(`http://localhost:5000/product/${id}`, {
-            method: "Delete"
+            method: "Delete",
+            headers:{
+                authorization:JSON.parse(localStorage.getItem('token'))
+            }
         });
         result = await result.json();
         if (result) {
@@ -33,7 +45,11 @@ const ProductList = () => {
     const searchHandle = async (event)=>{
         let key = event.target.value;
         if(key){
-            let result = await fetch(`http://localhost:5000/search/${key}`);
+            let result = await fetch(`http://localhost:5000/search/${key}`,{
+                headers:{
+                    authorization:JSON.parse(localStorage.getItem('token'))
+                }
+            });
             result = await result.json()
             if(result){
                 setProducts(result)
@@ -77,17 +93,17 @@ const ProductList = () => {
             </ul>
             {
                 products.length>0 ? products.map((item, index) =>
-                    <ul key={item._id}>
+                //item.price ==='24000'?
+                        <ul key={item._id}>
                         <li>{index + 1}</li>
                         <li>{item.name}</li>
                         <li>{item.price}</li>
                         <li>{item.category}</li>
                             <li>
-                            <button onClick={() => deleteProduct(item._id)} style={{background: "#87cce9"}}>Delete</button>
-                            <button style={{background: "#87cce9"}}><Link to={"/update/"+item._id} >Update </Link></button>
-                            <button style={{background: "#87cce9"}} onClick={() => addtocarthandler(item._id)}>C</button>
+                            <button style={{background: "#87cce9"}}><Link to={"/update/"+item._id} ><FontAwesomeIcon icon={faPenSquare} color="green" /></Link></button>
+                            <button onClick={() => deleteProduct(item._id)} style={{background: "#87cce9"}}><FontAwesomeIcon icon={faTrash} color="red"/></button>
+                            <button style={{background: "#87cce9"}} onClick={() => addtocarthandler(item._id)}> <FontAwesomeIcon icon={faShoppingCart} /></button>
                             </li>
-
                     </ul>
                 )
                 :<h1>No Result Found</h1>
