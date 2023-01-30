@@ -144,8 +144,7 @@ app.post("/cartlist", async (req, resp) => {
 
 app.delete("/cartlist/:id", async (req, resp) => {
     console.log('req.params.id',req.params.id);
-    let result = await Cart.deleteOne({ 
-        product_id: req.params.id });
+    let result = await Cart.deleteOne({ product_id: req.params.id });
     resp.send(result)
 }),
 
