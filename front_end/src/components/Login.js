@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Swal from "sweetalert2";
 const Login = () => {
 
     const [email, setEmail] = React.useState('');
@@ -28,7 +29,12 @@ const Login = () => {
             localStorage.setItem('token', JSON.stringify(result.auth));
             navigate("/")
         } else {
-            alert("Please enter correct details")
+            Swal.fire({
+                title: "Wrong",
+                text: "Please enter correct details",
+                icon: "!",
+                confirmButtonText: "OK",
+              });
         }
     }
 
