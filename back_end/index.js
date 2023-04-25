@@ -16,11 +16,11 @@ app.post("/register", async (req, resp) => {
     let result = await user.save();
     result = result.toObject();
     delete result.password
-    Jwt.sign({result}, jwtKey, {expiresIn:"2h"},(err,token)=>{
-        if(err){
-            resp.send("Something went wrong")  
+    Jwt.sign({ result }, jwtKey, { expiresIn: "2h" }, (err, token) => {
+        if (err) {
+            resp.send("Something went wrong")
         }
-        resp.send({result,auth:token})
+        resp.send({ result, auth: token })
     })
 })
 
@@ -28,11 +28,11 @@ app.post("/login", async (req, resp) => {
     if (req.body.password && req.body.email) {
         let user = await User.findOne(req.body).select("-password");
         if (user) {
-            Jwt.sign({user}, jwtKey, {expiresIn:"2h"},(err,token)=>{
-                if(err){
-                    resp.send("Something went wrong")  
+            Jwt.sign({ user }, jwtKey, { expiresIn: "2h" }, (err, token) => {
+                if (err) {
+                    resp.send("Something went wrong")
                 }
-                resp.send({user,auth:token})
+                resp.send({ user, auth: token })
             })
         } else {
             resp.send({ result: "No User found" })
@@ -91,14 +91,14 @@ app.post("/cart", async (req, resp) => {
     console.log(req.body)
     let cart = new Cart(req.body);
     let result = await cart.save();
-     resp.send(result);
+    resp.send(result);
 });
 
-app.get("/search/:key", verifyToken,  async (req, resp) => {
+app.get("/search/:key", verifyToken, async (req, resp) => {
     let result = await Product.find({
         "$or": [
             {
-                name: { $regex: req.params.key }  
+                name: { $regex: req.params.key }
             },
             {
                 company: { $regex: req.params.key }
@@ -111,13 +111,13 @@ app.get("/search/:key", verifyToken,  async (req, resp) => {
     resp.send(result);
 })
 
-function verifyToken(req, res, next){
+function verifyToken(req, res, next) {
     const token = req.headers['authorization'];
-//     if(token){
-// token = token.split(' ');
-//     }else{
+    //     if(token){
+    // token = token.split(' ');
+    //     }else{
 
-//     }
+    //     }
     // Jwt.verify(token, jwtKey, (err, valid)=>{
     //     if(err){
 
@@ -132,9 +132,9 @@ function verifyToken(req, res, next){
 
 app.post("/cartlist", async (req, resp) => {
     console.log(req.body.user_id);
-    let result = await Cart.find({user_id: req.body.user_id}).populate('product_id');
-    let list = result.map((item)=>item.product_id)
-      console.log(list);
+    let result = await Cart.find({ user_id: req.body.user_id }).populate('product_id');
+    let list = result.map((item) => item.product_id)
+    console.log(list);
     if (result) {
         resp.send(list)
     } else {
@@ -143,9 +143,9 @@ app.post("/cartlist", async (req, resp) => {
 });
 
 app.delete("/cartlist/:id", async (req, resp) => {
-    console.log('req.params.id',req.params.id);
+    console.log('req.params.id', req.params.id);
     let result = await Cart.deleteOne({ product_id: req.params.id });
     resp.send(result)
 }),
 
-app.listen(5000);
+    app.listen(5000);

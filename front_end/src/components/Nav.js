@@ -1,6 +1,7 @@
 import React from 'react';
 import test from '../components/ecommm.png'
 import testt from '../components/images/cov.png'
+// import testt from '../components/images/nvlogo.jpg'
 import {
     Link, useNavigate
 } from 'react-router-dom';
@@ -14,9 +15,9 @@ const Nav = () => {
     return (
         <div>
             <img
-            alt='logo'
-            src={testt}
-            className='logo' />
+                alt='logo'
+                src={testt}
+                className='logo' />
             {
                 auth ?
 
